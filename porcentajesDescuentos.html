@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Calculo de Descuento</h1>
+    </header>
+    <main>
+        <section>
+            <form action="">
+                <label for="valor">
+                    <span>Valor del producto</span>
+                    <input type="number" name="valorProducto" id="valor">
+                </label>
+                <form action="">
+                    <label for="descuento">
+                        <span>Descuento (%)</span>
+                        <input type="number" name="descuento" id="descuento">
+                    </label>
+                </form>
+                <button type="button" onclick="aplicarDescuento()">Aplicar descuento</button>
+                <h5>El precio final es: </h5><span id="precioDescuento"></span>
+        </section>
+    </main>
+    <script>
+
+        const descuento = (precio, descuento) => {
+            let descuentoTotal = precio - ((precio * descuento) / 100);
+            return descuentoTotal;
+        }
+
+
+        function aplicarDescuento() {
+            const valor = document.getElementById("valor").value;
+            const descuentoPorcentaje = document.getElementById("descuento").value;
+            const precioFinal = document.getElementById("precioDescuento");
+            precioFinal.textContent = `$${descuento(valor, descuentoPorcentaje)}`;
+        }
+
+
+    </script>
+</body>
+
+</html>

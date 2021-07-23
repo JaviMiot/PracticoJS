@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-image: url("https://i.pinimg.com/originals/bb/bd/36/bbbd36756f56b02c1a69b9dd74c1cc4a.png")
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 4rem;
+            color: white;
+            text-shadow: 1px 1px 7px rgb(119, 174, 252);
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 17px 35px;
+        }
+
+        .squart {
+            width: 350px;
+            height: 330px;
+            background-color: rgb(71, 142, 235, 0.4);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 3px 7px 17px 1px rgb(10, 46, 92, 0.3);
+            font-size: 1.3rem;
+            margin: 13px;
+        }
+
+        .squaere-logo {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            background-image: url("https://img.icons8.com/windows/32/000000/rounded-square.png");
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-bottom: 17px;
+        }
+
+        .form-title {
+            display: flex;
+            align-items: center;
+            line-height: 32px;
+        }
+
+        button {
+            font-size: 1.5rem;
+            width: 150px;
+            height: 30px;
+            border-radius: 5px;
+            outline: none;
+            border: none;
+            font-weight: bold;
+            margin-bottom: 7px;
+            color: hsl(215, 84%, 88%);
+        }
+
+        .form-area--container,
+        .form-perimetro--container {
+            margin-top: 13px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-input--container {
+            margin-bottom: 7px;
+        }
+
+        .form-input--container span {
+            font-weight: 600;
+        }
+
+        .form-input--container input {
+            height: 25px;
+            border: none;
+            padding: 3px 7px;
+            border-radius: 4px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 600;
+            width: 100px;
+            outline: none;
+            margin-left: 5px;
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3px;
+        }
+
+        .form--result {
+            margin-left: 3px;
+        }
+
+        .btn-area {
+            background: hsl(214, 100%, 25%);
+        }
+
+        .btn-perimeter {
+            background: hsl(214, 30%, 25%);
+        }
+
+        .btn-area:hover,
+        .btn-perimeter:hover {
+            color: hsl(175, 94%, 50%);
+        }
+
+        .btn-area:active {
+            background: hsl(214, 100%, 15%);
+        }
+
+        .btn-perimeter:active {
+            background: hsl(214, 30%, 15%);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cálculo de Figuras Geométricas</h1>
+
+    <main>
+        <section class="squart">
+            <form action="">
+                <h2 class="form-title"> <span class="squaere-logo"></span>Cuadrado</h2>
+                <div class="form-input--container">
+                    <label for="ladoCuadrado">
+                        <span>Lado del cuadrado:</span>
+                        <input id="ladoCuadrado" type="number" placeholder="lado" required name="ladoCuadrado">
+                    </label>
+                </div>
+
+                <div class="form-area--container">
+                    <button class='btn-area' type="button" onclick="calcularAreaCuadrado()">Calcular Área</button>
+                    <label for="">
+                        <span> <strong>Resultado Área:</strong> </span>
+                        <span class="form--result" id="RespAreaCuadrado"></span>
+                    </label>
+                </div>
+
+                <div class="form-perimetro--container">
+                    <button class='btn-perimeter' type="button" onclick="calcularPerimetroCuadrado()">Calcular
+                        Perímetro</button>
+                    <label for="">
+                        <span> <strong>Resultado Perímetro:</strong></span>
+                        <span class="form--result" id="RespPerimetroCuadrado"></span>
+                    </label>
+                </div>
+
+            </form>
+        </section>
+
+        <section class="squart">
+            <form action="">
+                <h2 class="form-title"> <span class="squaere-logo"></span>Triángulo</h2>
+                <div class="form-input--container">
+                    <label for="lado1">
+                        <span>Lado 1:</span>
+                        <input id="lado1" type="number" placeholder="lado 1" required name="lado1">
+                    </label>
+                    <label for="lado2">
+                        <span>Lado 2:</span>
+                        <input id="lado2" type="number" placeholder="lado 2" required name="lado2">
+                    </label>
+                    <label for="base">
+                        <span>Base:</span>
+                        <input id="base" type="number" placeholder="base" required name="base">
+                    </label>
+                    <label for="altura">
+                        <span>Altura:</span>
+                        <input id="altura" type="number" placeholder="altura" required name="altura">
+                    </label>
+                </div>
+
+                <div class="form-area--container">
+                    <button class='btn-area' type="button" onclick="calcularAreaTriangulo()">Calcular Área</button>
+                    <label for="">
+                        <span> <strong>Resultado Área:</strong> </span>
+                        <span class="form--result" id="RespAreaTriangulo"></span>
+                    </label>
+                </div>
+
+                <div class="form-perimetro--container">
+                    <button class='btn-perimeter' type="button" onclick="calcularPerimetroTriangulo()">Calcular
+                        Perímetro</button>
+                    <label for="">
+                        <span> <strong>Resultado Perímetro:</strong></span>
+                        <span class="form--result" id="RespPerimetroTriangulo"></span>
+                    </label>
+                </div>
+
+            </form>
+        </section>
+
+        <section class="squart">
+            <form action="">
+                <h2 class="form-title"> <span class="squaere-logo"></span>Triángulo Isósceles</h2>
+                <div class="form-input--container">
+                    <label for="lado1iso">
+                        <span>Lado 1:</span>
+                        <input id="lado1iso" type="number" placeholder="lado 1" required name="lado1">
+                    </label>
+                    <label for="lado2iso">
+                        <span>Lado 2:</span>
+                        <input id="lado2iso" type="number" placeholder="lado 2" required name="lado2">
+                    </label>
+                    <label for="baseiso">
+                        <span>Base:</span>
+                        <input id="baseiso" type="number" placeholder="base" required name="base">
+                    </label>
+                </div>
+
+                <div class="form-area--container">
+                    <button class='btn-area' type="button" onclick="calcularAlturaTriangulo()">Calcular Altura</button>
+                    <label for="">
+                        <span> <strong>Resultado Altura:</strong> </span>
+                        <span class="form--result" id="RespPerimetroTrianguloIso"></span>
+                    </label>
+                </div>
+
+            </form>
+        </section>
+
+
+        <section class="squart">
+            <form action="">
+                <h2 class="form-title"> <span class="squaere-logo"></span>Círculo</h2>
+                <div class="form-input--container">
+                    <label for="radio">
+                        <span>Radio:</span>
+                        <input id="radio" type="number" placeholder="radio" required name="radio">
+                    </label>
+                </div>
+
+                <div class="form-area--container">
+                    <button class='btn-area' type="button" onclick="calcularAreaCirculo()">Calcular Área</button>
+                    <label for="">
+                        <span> <strong>Resultado Área:</strong> </span>
+                        <span class="form--result" id="RespAreaCirculo"></span>
+                    </label>
+                </div>
+
+                <div class="form-perimetro--container">
+                    <button class='btn-perimeter' type="button" onclick="calcularPerimetroCirculo()">Calcular
+                        Perímetro</button>
+                    <label for="">
+                        <span> <strong>Resultado Perímetro:</strong></span>
+                        <span class="form--result" id="RespPerimetroCirculo"></span>
+                    </label>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+
+
+    <script>
+        class figurasGeometricas {
+            constructor() {
+
+            }
+
+            areaCuadrado(lado) {
+                return lado * lado;
+            }
+
+            perimetroCuadrado(lado) {
+                return lado * 4
+            }
+
+            areaTriangulo(base, altura) {
+                return Number(((base * altura) / 2).toFixed(2));
+            }
+
+            perimetroTriangulo(lado1, lado2, lado3) {
+                return Number(lado1) + Number(lado2) + Number(lado3);
+            }
+
+            areaCirculo(radio) {
+                return Number((Math.PI * (radio ** 2)).toFixed(2));
+            }
+
+            perimetroCirculo(radio) {
+                return Number((2 * Math.PI * radio).toFixed(2));
+            }
+
+            alturaTrianguloIsoceles(lado1, lado2, base) {
+                if (lado1 === lado2) {
+                    const alturaResp = Math.sqrt((lado1 ** 2 - (base ** 2 / 4))).toFixed(2);
+                    return alturaResp;
+                } else {
+                    return "No es isósceles";
+                }
+            }
+        }
+
+        let figCal = new figurasGeometricas();
+
+        function calcularAreaCuadrado() {
+            const lado = document.getElementById('ladoCuadrado').value;
+            const resp = document.getElementById('RespAreaCuadrado')
+            let area = figCal.areaCuadrado(lado);
+            resp.textContent = area;
+        };
+
+        function calcularPerimetroCuadrado() {
+            const lado = document.getElementById('ladoCuadrado').value;
+            const resp = document.getElementById('RespPerimetroCuadrado')
+            let perimetro = figCal.perimetroCuadrado(lado);
+            resp.textContent = perimetro;
+        }
+
+        function calcularAreaTriangulo() {
+            const altura = document.getElementById('altura').value;
+            const base = document.getElementById('base').value;
+            const resp = document.getElementById('RespAreaTriangulo')
+            let area = figCal.areaTriangulo(base, altura);
+            resp.textContent = area;
+        };
+
+        function calcularPerimetroTriangulo() {
+            const lado1 = document.getElementById('lado1').value;
+            const lado2 = document.getElementById('lado2').value;
+            const base = document.getElementById('base').value;
+            const resp = document.getElementById('RespPerimetroTriangulo')
+            let perimetro = figCal.perimetroTriangulo(lado1, lado2, base);
+            resp.textContent = perimetro;
+        }
+
+        function calcularAlturaTriangulo() {
+            const lado1 = document.getElementById('lado1iso').value;
+            const lado2 = document.getElementById('lado2iso').value;
+            const base = document.getElementById('baseiso').value;
+            const resp = document.getElementById('RespPerimetroTrianguloIso')
+            let altura = figCal.alturaTrianguloIsoceles(lado1, lado2, base);
+            resp.textContent = altura;
+        }
+
+        function calcularAreaCirculo() {
+            const radio = document.getElementById('radio').value;
+            const resp = document.getElementById('RespAreaCirculo')
+            let area = figCal.areaCirculo(radio);
+            resp.textContent = area;
+        }
+
+        function calcularPerimetroCirculo() {
+            const radio = document.getElementById('radio').value;
+            const resp = document.getElementById('RespPerimetroCirculo')
+            let perimetro = figCal.perimetroCirculo(radio);
+            resp.textContent = perimetro;
+        }
+    </script>
+</body>
+
+</html>

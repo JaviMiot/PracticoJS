@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <h1>Promedio Moda Mediana</h1>
+        <form action="">
+
+            <label for="datos">
+                <span>Datos: </span>
+                <input type="text" name="" id="datos">
+            </label>
+
+            <button type="button" onclick="onclickPromedio()">Promedio</button>
+            <button type="button" onclick="onclickModa()">Moda</button>
+            <button type="button" onclick="onclickMediana()">Mediana</button>
+
+            <span>Promedio: </span>
+            <span id="promedio"></span>
+            <span>Moda: </span>
+            <span id="moda"></span>
+            <span>Mediana: </span>
+            <span id="mediana"></span>
+
+        </form>
+
+    </header>
+
+    <script>
+
+        const inputDatos = document.getElementById("datos");
+
+        const convertStringToArray = (string) => {
+            let arrayDtos = string.split(',');
+            return arrayDtos.map(dato => Number(dato.trim()))
+        }
+        const promedio = (datos) => {
+            let numberData = convertStringToArray(datos)
+            let countData = numberData.length;
+
+            return (numberData.reduce((total, data) => total += data)) / countData
+        }
+
+        const mediana = (datos) => {
+            let numberData = convertStringToArray(datos)
+            let mediaResp = 0;
+
+            let orderData = numberData.sort((a, b) => {
+                return a - b;
+            })
+
+            if (orderData.length % 2 === 0) {
+                mediaResp = (orderData[(orderData.length / 2) - 1] + orderData[orderData.length / 2]) / 2
+                return mediaResp
+            } else {
+                return orderData[Math.floor(orderData.length / 2)]
+            }
+        }
+
+        const moda = (datos)=>{
+            let arrayNum = convertStringToArray(datos);
+            let listCount = {}
+
+            arrayNum.map((elemento) =>{
+                if(listCount[elemento]){
+                    listCount[elemento] += 1
+                }else{
+                    listCount[elemento] = 1
+                }
+            })
+
+            let listArray = Object.entries(listCount).sort(
+                (acumulado, nuevo)=>{
+                    return acumulado[1] - nuevo[1]
+                }
+            )
+            console.log(listArray)
+            return listArray[listArray.length-1];
+        }
+
+
+        function onclickPromedio() {
+            const resp = document.getElementById("promedio");
+            resp.textContent = promedio(inputDatos.value);
+        }
+
+        function onclickMediana() {
+            const resp = document.getElementById("mediana");
+            resp.textContent = mediana(inputDatos.value);
+        }
+
+        function onclickModa() {
+            const resp = document.getElementById("moda");
+            resp.textContent = moda(inputDatos.value);
+        }
+
+    </script>
+</body>
+
+</html>
